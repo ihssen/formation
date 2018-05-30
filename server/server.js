@@ -3,6 +3,15 @@ const app = express()
 
 var api = express.Router();
 
+app.use(function (req, res, next) {
+
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-type, Accept');
+  // res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
 
 var players = [
   {id:0, first_name: "alex", last_name: "fergisson", phone: "123456", email: "alex@gmail.com"},
