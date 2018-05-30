@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ListComponent } from './players/list/list.component';
 import { ApiService } from './shared/api.service';
+import { NavComponent } from './nav/nav.component';
 
 var router = [
   {
@@ -16,7 +17,8 @@ var router = [
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent
+    ListComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
