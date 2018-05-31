@@ -23,5 +23,11 @@ export class ListComponent implements OnInit {
     })
   }
 
+  removePlayer(playerId){
+    this.api.delete(`players/${playerId}`).subscribe(res => {
+      console.log(res);
+      this.getAllPlayers();
+    });
+  }
 
 }

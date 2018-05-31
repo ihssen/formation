@@ -1,3 +1,26 @@
-<p>
-  list works!
-</p>
+<table class="table table-striped">
+  <thead>
+    <th>first name</th>
+    <th>last name</th>
+    <th>email</th>
+    <th>phone</th>
+    <th>actions</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let player of players">
+      <!-- <tr *ngFor="let player of players | players : 2"> -->
+      <td>{{ player.first_name  | uppercase}}</td>
+      <td>{{ player.last_name }}</td>
+      <td>{{ player.phone }}</td>
+      <td>{{ player.email }}</td>
+      <td>
+        <button class="btn btn-success" routerLink="/add">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        <button class="btn btn-danger" (click)="removePlayer(player.id)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

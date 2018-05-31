@@ -1,5 +1,8 @@
-const express = require('express')
-const app = express()
+var express = require('express')
+var bodyParser = require('body-parser')
+var app = express()
+
+app.use(bodyParser.json());
 
 var api = express.Router();
 
@@ -8,7 +11,7 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-type, Accept');
-  // res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
 
@@ -32,7 +35,34 @@ api.get('/players/:id', (req, res) => {
   res.json(result);
 })
 
+/// delete player
+api.delete('/players/:id', (req, res) => {
+  let playerId = req.params.id;
+  let player = players.filter(player => {
+    return player.id == playerId;
+  })[0];
 
+  const index = players.indexOf(player);
+  players.splice(index, 1);
+
+  res.json({ message: `player with id ${playerId} is deleted`});
+})
+
+/// post player 
+api.post('/players', (req, res) => {
+  console.log(req.body);
+  let player = {
+    id: players.length +1,
+    first_name: req.body.firstName,
+    last_name: req.body.lastName,
+    email: req.body.email,
+    phone: req.body.phone
+  };
+  
+  players.push(player);
+
+  res.json(player);
+})
 
 app.use('/api', api);
 

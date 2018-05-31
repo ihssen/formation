@@ -17,6 +17,7 @@ export class ApiService {
  }
 
  post(url: string, body: Object) {
+   console.log(url);
    return this.request(url, RequestMethod.Post, body);
  }
 
